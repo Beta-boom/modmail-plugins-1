@@ -104,7 +104,7 @@ class moderation(commands.Cog):
                     if modlog != None:
                         embed = discord.Embed(
                             title = "Kick",
-                            description = f"{member.mention} has been kicked by {ctx.message.author.mention} in {ctx.message.channel.mention}.",
+                            description = f"{member.mention} ha sido kickeado por {ctx.message.author.mention} en {ctx.message.channel.mention}.",
                             color = self.blurple
                         )
                         await modlog.send(embed = embed)
@@ -143,16 +143,16 @@ class moderation(commands.Cog):
     async def ban(self, ctx, member : discord.Member = None, *, reason = None):
         if member == None:
             embed = discord.Embed(
-                title = "Ban Error",
-                description = "Please specify a user!",
+                title = "Error",
+                description = "Debes especificar un usuario",
                 color = self.errorcolor
             )
             await ctx.send(embed = embed)
         else:
             if member.id == ctx.message.author.id:
                 embed = discord.Embed(
-                    title = "Ban Error",
-                    description = "You can't ban yourself!",
+                    title = "Error",
+                    description = "¡No te puedes banear a ti mismo!",
                     color = self.blurple
                 )
                 await ctx.send(embed = embed)
