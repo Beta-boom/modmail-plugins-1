@@ -255,30 +255,30 @@ class moderation(commands.Cog):
     async def mute(self, ctx, member : discord.Member = None, *, reason = None):
         if member == None:
             embed = discord.Embed(
-                title = "Mute Error",
-                description = "Please specify a user!",
+                title = "Error :(",
+                description = "Se ha producido un error al mutear: no has especificado un usuario",
                 color = self.errorcolor
             )
             await ctx.send(embed = embed, delete_after = 5.0)
         else:
             if member.id == ctx.message.author.id:
                 embed = discord.Embed(
-                    title = "Mute Error",
-                    description = "You can't mute yourself!",
+                    title = "Error :(",
+                    description = "Se ha producido un error al mutar: ¡No te puedes mutear a ti mismo!",
                     color = self.errorcolor
                 )
                 await ctx.send(embed = embed, delete_after = 5.0)
             else:
                 if reason == None:
-                    role = discord.utils.get(ctx.guild.roles, name = "Muted")
+                    role = discord.utils.get(ctx.guild.roles, name = "Muteado")
                     if role == None:
-                        role = await ctx.guild.create_role(name = "Muted")
+                        role = await ctx.guild.create_role(name = "Muteado")
                         for channel in ctx.guild.text_channels:
                             await channel.set_permissions(role, send_messages = False)
                     await member.add_roles(role)
                     embed = discord.Embed(
                         title = "Mute",
-                        description = f"{member.mention} has been muted by {ctx.message.author.mention}.",
+                        description = f"{member.mention} ha sido muteado por {ctx.message.author.mention}.",
                         color = self.blurple
                     )
                     await ctx.send(embed = embed)
@@ -288,20 +288,20 @@ class moderation(commands.Cog):
                     if modlog != None:
                         embed = discord.Embed(
                             title = "Mute",
-                            description = f"{member.mention} has been muted by {ctx.message.author.mention} in {ctx.message.channel.mention}.",
+                            description = f"{member.mention} ha sido muteado por {ctx.message.author.mention} en {ctx.message.channel.mention}.",
                             color = self.blurple
                         )
                         await modlog.send(embed = embed)
                 else:
-                    role = discord.utils.get(ctx.guild.roles, name = "Muted")
+                    role = discord.utils.get(ctx.guild.roles, name = "Muteado")
                     if role == None:
-                        role = await ctx.guild.create_role(name = "Muted")
+                        role = await ctx.guild.create_role(name = "Muteado")
                         for channel in ctx.guild.text_channels:
                             await channel.set_permissions(role, send_messages = False)
                     await member.add_roles(role)
                     embed = discord.Embed(
                         title = "Mute",
-                        description = f"{member.mention} has been muted by {ctx.message.author.mention} for {reason}",
+                        description = f"{member.mention} ha sido muteado por {ctx.message.author.mention} Razón: {reason}",
                         color = self.blurple
                     )
                     await ctx.send(embed = embed)
@@ -311,7 +311,7 @@ class moderation(commands.Cog):
                     if modlog != None:
                         embed = discord.Embed(
                             title = "Mute",
-                            description = f"{member.mention} has been muted by {ctx.message.author.mention} in {ctx.message.channel.mention} for {reason}",
+                            description = f"{member.mention} ha sido muteado  {ctx.message.author.mention} en {ctx.message.channel.mention} Razón: {reason}",
                             color = self.blurple
                         )
                         await modlog.send(embed = embed)
@@ -320,8 +320,8 @@ class moderation(commands.Cog):
     async def mute_error(self, ctx, error):
         if isinstance(error, commands.MissingPermissions):
             embed = discord.Embed(
-                title = "Missing Permissions!",
-                description = "You are missing the **Moderator** permission level!",
+                title = "Error :(",
+                description = "¡Necesitas permisos de **moderador** para hacer eso!",
                 color = self.errorcolor
             )
             await ctx.send(embed = embed)
@@ -454,7 +454,7 @@ class moderation(commands.Cog):
         await ctx.channel.delete()
         embed = discord.Embed(
             title = "¡Buuuuuum!",
-            description  = "¡Acabo de NUKEAR el canal!",
+            description  = "¡Acabo de **NUKEAR** el canal!",
             color = self.blurple
         )
         embed.set_image(url = "https://cdn.discordapp.com/attachments/600843048724987925/600843407228928011/tenor.gif")
