@@ -277,7 +277,7 @@ class moderation(commands.Cog):
                             await channel.set_permissions(role, send_messages = False)
                     await member.add_roles(role)
                     embed = discord.Embed(
-                        title = "Mute",
+                        title = "Muteo",
                         description = f"{member.mention} ha sido muteado por {ctx.message.author.mention}.",
                         color = self.blurple
                     )
@@ -287,7 +287,7 @@ class moderation(commands.Cog):
                         return
                     if modlog != None:
                         embed = discord.Embed(
-                            title = "Mute",
+                            title = "Muteo",
                             description = f"{member.mention} ha sido muteado por {ctx.message.author.mention} en {ctx.message.channel.mention}.",
                             color = self.blurple
                         )
@@ -300,7 +300,7 @@ class moderation(commands.Cog):
                             await channel.set_permissions(role, send_messages = False)
                     await member.add_roles(role)
                     embed = discord.Embed(
-                        title = "Mute",
+                        title = "Muteo",
                         description = f"{member.mention} ha sido muteado por {ctx.message.author.mention} Razón: {reason}",
                         color = self.blurple
                     )
@@ -310,7 +310,7 @@ class moderation(commands.Cog):
                         return
                     if modlog != None:
                         embed = discord.Embed(
-                            title = "Mute",
+                            title = "Muteo",
                             description = f"{member.mention} ha sido muteado  {ctx.message.author.mention} en {ctx.message.channel.mention} Razón: {reason}",
                             color = self.blurple
                         )
@@ -332,18 +332,18 @@ class moderation(commands.Cog):
     async def unmute(self, ctx, member : discord.Member = None):
         if member == None:
             embed = discord.Embed(
-                title = "Unmute Error",
-                description = "Please specify a user!",
+                title = "Error :(",
+                description = "Se ha producido un error al desmutear: no has especificado un usuario",
                 color = self.errorcolor
             )
             await ctx.send(embed = embed, delete_after = 5.0)
         else:
-            role = discord.utils.get(ctx.guild.roles, name = "Muted")
+            role = discord.utils.get(ctx.guild.roles, name = "Muteado")
             if role in member.roles:
                 await member.remove_roles(role)
                 embed = discord.Embed(
-                    title = "Unmute",
-                    description = f"{member.mention} has been unmuted by {ctx.message.author.mention}.",
+                    title = "Desmuteo",
+                    description = f"{member.mention} ha sido desmuteado por {ctx.message.author.mention}.",
                     color = self.blurple
                 )
                 await ctx.send(embed = embed)
@@ -352,15 +352,15 @@ class moderation(commands.Cog):
                     return
                 if modlog != None:
                     embed = discord.Embed(
-                        title = "Unmute",
-                        description = f"{member.mention} has been unmuted by {ctx.message.author.mention} in {ctx.message.channel.mention}.",
+                        title = "Desmuteo",
+                        description = f"{member.mention} ha sido desmuteado por {ctx.message.author.mention} in {ctx.message.channel.mention}.",
                         color = self.blurple
                     )
                     await modlog.send(embed = embed)
             else:
                 embed = discord.Embed(
-                    title = "Unmute Error",
-                    description = f"{member.mention} is not muted!",
+                    title = "Error :(",
+                    description = f"Se ha producido un error al desmutear: {member.mention} no está muteado",
                     color = self.errorcolor
                 )
                 await ctx.send(embed = embed)
