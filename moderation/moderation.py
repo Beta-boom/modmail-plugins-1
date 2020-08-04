@@ -369,8 +369,8 @@ class moderation(commands.Cog):
     async def unmute_error(self, ctx, error):
         if isinstance(error, commands.MissingPermissions):
             embed = discord.Embed(
-                title = "Missing Permissions!",
-                description = "You are missing the **Moderator** permission level!",
+                title = "Error :(",
+                description = "¡Necesitas permisos de **moderador** para hacer eso!",
                 color = self.errorcolor
             )
             await ctx.send(embed = embed)
